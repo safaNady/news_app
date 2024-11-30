@@ -4,8 +4,12 @@ import 'package:news_app/config/theme/app_style.dart';
 import 'package:news_app/data_model/category_DM.dart';
 import 'package:news_app/presentation/screens/home/tabs/categories/category_widget/category_widget.dart';
 
+typedef OnCategoryClicked = void Function(CategoryDM category);
+
 class Categories extends StatelessWidget {
-  Categories({super.key});
+  Categories({super.key, required this.onCategoryClicked});
+
+  OnCategoryClicked onCategoryClicked;
 
   List<CategoryDM> categoriesList = CategoryDM.getAllCategories();
 
@@ -27,8 +31,13 @@ class Categories extends StatelessWidget {
                 crossAxisSpacing: 20,
               ),
               itemCount: categoriesList.length,
-              itemBuilder: (context, index) => CategoryWidget(
-                  categoryDM: categoriesList[index], index: index),
+              itemBuilder: (context, index) => InkWell(
+                onTap: () {
+                  onCategoryClicked(categoriesList[index]);
+                },
+                child: CategoryWidget(
+                    categoryDM: categoriesList[index], index: index),
+              ),
             ),
           )
         ],
