@@ -6,6 +6,7 @@ import 'package:news_app/presentation/screens/home/home_drawer/home_drawer.dart'
 import 'package:news_app/presentation/screens/home/tabs/categories/categories.dart';
 import 'package:news_app/presentation/screens/home/tabs/category_details/category_details.dart';
 import 'package:news_app/presentation/screens/home/tabs/settings/settings.dart';
+import 'package:news_app/presentation/screens/search_deligat/search.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -35,8 +36,13 @@ class _HomeState extends State<Home> {
             title: const Text('News App'),
             actions: [
               IconButton(
-                icon: Icon(Icons.search),
-                onPressed: () {},
+                icon: const Icon(
+                  Icons.search,
+                  size: 30,
+                ),
+                onPressed: () {
+                  showSearch(context: context, delegate: Search());
+                },
               ),
             ],
           ),
